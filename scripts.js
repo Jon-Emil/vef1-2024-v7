@@ -49,28 +49,185 @@ function split(str, separator = ' ') {
 // Grunnföll sem skilgreina á
 
 function longest(str) {
-  // Útfæra
+  if (isString(str)) {
+    const words = split(str);
+    var longest = "";
+    for (const word of words) {
+      if (word.length > longest.length) {
+        longest = word;
+      }
+    }
+    return longest;
+  }
+  return null;
 }
+console.assert(
+  longest("halló heimur!") === "heimur!",
+  "longest: finnur lengsta orð strengs"
+);
+console.assert(
+  longest("skilar alltaf fyrsta") === "skilar",
+  "longest: skilar fyrsta lengsta orðinu ef mörg orð eru lengst"
+);
+console.assert(
+  longest("") === "",
+  "longest: skilar tómum streng ef það fær tóman streng"
+)
+console.assert(
+  longest(false) === null,
+  "longest: ef ekki strengur, skila null"
+)
 
 function shortest(str) {
-  // Útfæra
+  if (isString(str)) {
+    const words = split(str);
+    var shortest = str;
+    for (const word of words) {
+      if (word.length < shortest.length) {
+        shortest = word;
+      }
+    }
+    return shortest;
+  }
+  return null;
 }
+console.assert(
+  shortest("halló heimur!") === "halló",
+  "shortest: finnur stysta orð strengs"
+);
+console.assert(
+  shortest("skilar alltaf fyrsta") === "skilar",
+  "shortest: skilar fyrsta stysta orðinu ef mörg orð eru styst"
+);
+console.assert(
+  shortest("") === "",
+  "shortest: skilar tómum streng ef það fær tóman streng"
+)
+console.assert(
+  shortest(false) === null,
+  "shortest: ef ekki strengur, skila null"
+)
 
 function reverse(str) {
-  // Útfæra
+  if (isString(str)) {
+    const split = str.split("");
+    const reversed = split. reverse();
+  
+    return reversed. join("");
+  }
+  return null;
 }
+
+console.assert(
+  reverse("halló heimur") === "rumieh óllah",
+  "reverse: snýr viõ einföldum streng"
+);
+console.assert(
+  reverse(false) === null,
+  "reverse: ef ekki strengur, skila null"
+);
+console.assert(
+  reverse("") === "",
+  "reverse: ef tómur strengur, skila tómum streng"
+)
 
 function palindrome(str) {
-  // Útfæra
+  if (isString(str) && str !== "") {
+    const strengur = str.toLowerCase();
+    const reversed = reverse(strengur);
+    if (strengur == reversed) {
+      return true;
+    } 
+    return false;
+  }
+  return false;
 }
+console.assert(
+  palindrome("Halló óllaH") === true,
+  "palindrome: skilar true ef strengur er samhverfur"
+);
+console.assert(
+  palindrome("Halló Halló") === false,
+  "palindrome: skilar false ef strengur er ekki samhverfur"
+);
+console.assert(
+  palindrome("Halló óllah") === true,
+  "palindrome: er sama um hástafi og lágstafi"
+);
+console.assert(
+  palindrome(true) === false,
+  "palindrome: ef ekki strengur, skila false"
+);
+console.assert(
+  palindrome("") === false,
+  "palindrome: ef tómur strengur, skila false"
+);
 
 function vowels(str) {
-  // Útfæra
+  if (isString(str) && str !== "") {
+    const strengur = str.toLowerCase();
+    const letters = split(strengur, "");
+    var count = 0;
+    for (const vowel of VOWELS) {
+      for (const letter of letters) {
+        if (vowel == letter) {
+          count++
+        }
+      }
+    }
+    return count;
+  }
+  return 0;
 }
+console.assert(
+  vowels("Halló Heimur") === 5,
+  "vowels: skilar fjölda íslenska sérhljóða"
+);
+console.assert(
+  vowels("HÆ hæ") === 2,
+  "vowels: er sama um hástafi og lágstafi"
+);
+console.assert(
+  vowels(true) === 0,
+  "vowels: ef ekki strengur, skila 0"
+);
+console.assert(
+  vowels("") === 0,
+  "vowels: ef tómur strengur, skila 0"
+);
 
 function consonants(str) {
-  // Útfæra
+  if (isString(str) && str !== "") {
+    const strengur = str.toLowerCase();
+    const letters = split(strengur, "");
+    var count = 0;
+    for (const consonant of CONSONANTS) {
+      for (const letter of letters) {
+        if (consonant == letter) {
+          count++
+        }
+      }
+    }
+    return count;
+  }
+  return 0;
 }
+console.assert(
+  consonants("halló heimur") === 6,
+  "consonants: skilar fjölda íslenska samhljóða"
+);
+console.assert(
+  consonants("HÆ hæ") === 2,
+  "consonants: er sama um hástafi og lágstafi"
+);
+console.assert(
+  consonants(true) === 0,
+  "consonants: ef ekki strengur, skila 0"
+);
+console.assert(
+  consonants("") === 0,
+  "consonants: ef tómur strengur, skila 0"
+);
 
 //------------------------------------------------------------------------------
 // Leiðbeint ferli
