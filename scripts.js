@@ -233,5 +233,31 @@ console.assert(
 // Leiðbeint ferli
 
 function start() {
-  // Útfæra
+  alert("Sláðu inn streng til að fá upplýsingar um: \n - Lengsta orð. \n - Stysta orð. \n - Strengurinn Snúinn við. \n - Fjölda sérhljóða í streng. \n - Fjölda samhljóða í streng. \n - Hvort strengurinn er samhverfur.");
+  while(true) {
+  const strengurinn = prompt("Sláðu inn streng með nokkrum orðum")
+  if (strengurinn === null || strengurinn.trim().length === 0) {
+    const reynaAftur = confirm("Viltu reyna aftur?")
+    if (!reynaAftur) {
+      break;
+    }
+    else {
+      continue;
+    }
+  }
+  
+  alert(`Lengsta orðið er: ${longest(strengurinn)}
+  Stysta orðið er: ${shortest(strengurinn)}
+  Strengurinn snúinn við: ${reverse(strengurinn)}  
+  Fjöldi sérhljóða í streng: ${vowels(strengurinn)}
+  Fjöldi samhljóða í streng: ${consonants(strengurinn)}
+  ${palindrome(strengurinn) ? "Strengurinn er samhverfur" : "Strengurinn er ekki samhverfur"}`);
+  const haldaAfram = confirm("Viltu reyna aftur?")
+    if (!haldaAfram) {
+      break;
+    }
+    else {
+      continue;
+    }
+  }
 }
